@@ -1,12 +1,6 @@
 package com.dxl.example.rabbit;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.amqp.core.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +14,8 @@ import org.springframework.context.annotation.EnableMBeanExport;
  */
 @SpringBootApplication
 public class RabbitApplication {
-    final static String queueName = "spring-boot";
+    //final static String queueName = "spring-boot";
+   /* final static String queueName = "direct-queue";
 
     @Bean
     Queue queue() {
@@ -33,23 +28,24 @@ public class RabbitApplication {
     }
 
     @Bean
+    DirectExchange directExchange(){
+        return new DirectExchange("direct-exchange");
+    }
+
+    @Bean
     Binding binding(Queue queue, TopicExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(queueName);
     }
 
     @Bean
-    SimpleMessageListenerContainer container(ConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(queueName);
-        container.setMessageListener(listenerAdapter);
-        return container;
+    Binding direciBinding(Queue queue,DirectExchange exchange){
+        return BindingBuilder.bind(queue).to(exchange).with("direct");
     }
 
     @Bean
-    MessageListenerAdapter listenerAdapter(Receiver receiver) {
-        return new MessageListenerAdapter(receiver);
-    }
+    FanoutExchange fanoutExchange(){
+        return new FanoutExchange("fanout-exchange");
+    }*/
 
     public static void main(String[] args) {
         SpringApplication.run(RabbitApplication.class);
