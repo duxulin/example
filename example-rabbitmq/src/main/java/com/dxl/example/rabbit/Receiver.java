@@ -1,14 +1,17 @@
 package com.dxl.example.rabbit;
 
 import com.rabbitmq.client.Channel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.concurrent.CountDownLatch;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @Program Receiver
@@ -18,20 +21,41 @@ import java.util.concurrent.CountDownLatch;
  */
 @Component
 public class Receiver {
+    private static Logger log = LoggerFactory.getLogger(Receiver.class);
 
+    public static Set<Long> failureMsg = new HashSet<>();
 
-    @RabbitListener(queues = {"fanout_queue"})
+    @RabbitListener(queues = {"direct_queue"})
     public void receiveMessage(Message message, Channel channel) {
+
+
         System.out.println("queue Received: " + message);
         String s = new String(message.getBody());
+
+        long deliveryTag = message.getMessageProperties().getDeliveryTag();
+        String correlationId = message.getMessageProperties().getCorrelationId();
+        System.out.println("deliveryTag = " + deliveryTag);
+        System.out.println("correlationId = " + correlationId);
         try {
-            if ("ok".equals(s)) {
-                channel.basicAck(message.getMessageProperties().getDeliveryTag(), true);
-            } else {
-                channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+            System.out.println(s);
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+            if (failureMsg.contains(deliveryTag)) {
+                failureMsg.remove(deliveryTag);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            //e.printStackTrace();
+            try {
+                if (!failureMsg.contains(deliveryTag)) {
+                    log.info("第一次处理失败，重新进入队列");
+                    channel.basicNack(deliveryTag, false, true);
+                    failureMsg.add(deliveryTag);
+                } else {
+                    log.info("超过2次处理失败，不进入队列");
+                    channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, false);
+                }
+            } catch (IOException ex) {
+
+            }
         }
     }
 

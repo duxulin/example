@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 public class Recever2 {
 
-    @RabbitListener(queues = "fanout_queue")
+    //@RabbitListener(queues = "fanout_queue")
     public void receiveMessage(Message msg) {
         System.out.println("Receive2:" + msg);
     }

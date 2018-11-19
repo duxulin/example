@@ -1,5 +1,7 @@
 package com.dxl.example.cache;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @Author duxl
  * @Create 2018/11/15 9:03
  */
+@Data
 public class Book implements Serializable {
     private String isbn;
 
@@ -21,7 +24,7 @@ public class Book implements Serializable {
         this.title = title;
     }
 
-    public String getIsbn() {
+    /*public String getIsbn() {
         return isbn;
     }
 
@@ -43,5 +46,5 @@ public class Book implements Serializable {
                 "isbn='" + isbn + '\'' +
                 ", title='" + title + '\'' +
                 '}';
-    }
+    }*/
 }

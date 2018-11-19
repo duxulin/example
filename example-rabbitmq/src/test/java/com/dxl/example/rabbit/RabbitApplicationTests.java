@@ -42,7 +42,7 @@ public class RabbitApplicationTests {
     public void run() {
         System.out.println("sending....");
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        rabbitTemplate.convertAndSend("fanout_exchange", "direct_roting_key", "ok", correlationData);
-        rabbitTemplate.convertAndSend("fanout_exchange", "direct_rotint_key", "no", correlationData);
+        rabbitTemplate.convertAndSend("direct_exchange", "direct_routing_key", "ok", correlationData);
+        rabbitTemplate.convertAndSend("direct_exchange", "direct_routing_key", "no", correlationData);
     }
 }

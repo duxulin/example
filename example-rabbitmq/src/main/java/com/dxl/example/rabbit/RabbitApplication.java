@@ -4,6 +4,7 @@ import org.springframework.amqp.core.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableMBeanExport;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.EnableMBeanExport;
  * @Create 2018/11/15 17:04
  */
 @SpringBootApplication
+//@ComponentScan(basePackages = {"com.dxl.example.rabbit"})
 public class RabbitApplication {
     //final static String queueName = "spring-boot";
    /* final static String queueName = "direct-queue";
@@ -49,6 +51,7 @@ public class RabbitApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(RabbitApplication.class);
+
     }
 
 
