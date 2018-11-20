@@ -1,5 +1,6 @@
 package com.dxl.example.rabbit;
 
+import com.dxl.example.netty.serializer.KryoSerializer;
 import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,17 +28,20 @@ public class Receiver {
 
     @RabbitListener(queues = {"direct_queue"})
     public void receiveMessage(Message message, Channel channel) {
+        KryoSerializer kryoSerializer = new KryoSerializer();
+        Person deserializer = kryoSerializer.deserializer(message.getBody());
+        log.info("age:{}", deserializer.getAge());
+        log.info("name:{}", deserializer.getName());
 
-
-        System.out.println("queue Received: " + message);
-        String s = new String(message.getBody());
+        //System.out.println("queue Received: " + message);
+        //String s = new String(message.getBody());
 
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
         String correlationId = message.getMessageProperties().getCorrelationId();
-        System.out.println("deliveryTag = " + deliveryTag);
-        System.out.println("correlationId = " + correlationId);
+        log.info("deliveryTag = " + deliveryTag);
+        log.info("correlationId = " + correlationId);
         try {
-            System.out.println(s);
+            //System.out.println(s);
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
             if (failureMsg.contains(deliveryTag)) {
                 failureMsg.remove(deliveryTag);
