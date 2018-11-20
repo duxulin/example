@@ -18,5 +18,4 @@ import java.util.UUID;
 
 public class RabbitRun {
 
-
 }
