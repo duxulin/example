@@ -1,11 +1,9 @@
 package com.dxl.example.rabbit;
 
-import com.dxl.example.netty.serializer.KryoSerializer;
-import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,29 +19,25 @@ import java.util.UUID;
 @Controller("/mq")
 public class Sender {
 
-    @Autowired
-    private RabbitTemplate amqpTemplate;
-    //    private AmqpTemplate amqpTemplate;
-    private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
+	//    private AmqpTemplate amqpTemplate;
+	private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
-    @RequestMapping("/send")
-    @ResponseBody
-    public String send(String name, int age) {
-        Person person = new Person();
-        person.setAge(age);
-        person.setName(name);
+	@RequestMapping("/send")
+	@ResponseBody
+	public String send(@Validated Person person) {
 
-        KryoSerializer kryoSerializer = new KryoSerializer();
-        byte[] serializer = kryoSerializer.serializer(person);
 
-        String correlationId = UUID.randomUUID().toString();
-        CorrelationData correlationData = new CorrelationData(correlationId);
-
-        System.out.println("correlationDate:" + correlationData);
-        MessageProperties messageProperties = new MessageProperties();
-        messageProperties.setCorrelationId(correlationId);
-        Message message = new Message(serializer, messageProperties);
-        amqpTemplate.convertAndSend("direct_exchange", "direct_routing_key", message, correlationData);
-        return "success";
-    }
+		String correlationId = UUID.randomUUID().toString();
+		//correlationId必须设置到messageProperties中，否则消费则无法获取到；
+		//正确做法
+		rabbitTemplate.convertAndSend("direct_exchange", "direct_routing_key", person, message -> {
+			message.getMessageProperties().setCorrelationId(correlationId);
+			return message;
+		});
+		//错误做法 消费者收不到correlationId
+		//rabbitTemplate.convertAndSend("direct_exchange","direct_routing_key",person,new CorrelationData(correlationId));
+		return "success";
+	}
 }

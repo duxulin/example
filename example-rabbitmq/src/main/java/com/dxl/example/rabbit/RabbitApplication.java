@@ -16,7 +16,7 @@ import org.springframework.context.annotation.EnableMBeanExport;
 @SpringBootApplication
 //@ComponentScan(basePackages = {"com.dxl.example.rabbit"})
 public class RabbitApplication {
-    //final static String queueName = "spring-boot";
+	//final static String queueName = "spring-boot";
    /* final static String queueName = "direct-queue";
 
     @Bean
@@ -49,10 +49,10 @@ public class RabbitApplication {
         return new FanoutExchange("fanout-exchange");
     }*/
 
-    public static void main(String[] args) {
-        SpringApplication.run(RabbitApplication.class);
+	public static void main(String[] args) {
+		SpringApplication.run(RabbitApplication.class);
 
-    }
+	}
 
 
 }

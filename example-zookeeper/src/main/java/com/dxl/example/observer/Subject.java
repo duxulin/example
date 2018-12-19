@@ -11,40 +11,40 @@ import java.util.Observer;
  * @Create 2018/11/14 13:12
  */
 public class Subject {
-    private List<Observer> observers = new ArrayList<>();
-    private int status;
+	private List<Observer> observers = new ArrayList<>();
+	private int status;
 
-    public Subject() {
-    }
+	public Subject() {
+	}
 
-    public Subject(int status) {
-        this.status = status;
-    }
+	public Subject(int status) {
+		this.status = status;
+	}
 
-    public List<Observer> getObservers() {
-        return observers;
-    }
+	public List<Observer> getObservers() {
+		return observers;
+	}
 
-    public void setObservers(List<Observer> observers) {
-        this.observers = observers;
-    }
+	public void setObservers(List<Observer> observers) {
+		this.observers = observers;
+	}
 
-    public int getStatus() {
-        return status;
-    }
+	public int getStatus() {
+		return status;
+	}
 
-    public void setStatus(int status) {
-        this.status = status;
-        notifyAllObserver();
-    }
+	public void setStatus(int status) {
+		this.status = status;
+		notifyAllObserver();
+	}
 
-    public void attah(Observer observer) {
-        observers.add(observer);
-    }
+	public void attah(Observer observer) {
+		observers.add(observer);
+	}
 
-    public void notifyAllObserver() {
-        for (Observer observer : observers) {
-            observer.update(null, null);
-        }
-    }
+	public void notifyAllObserver() {
+		for (Observer observer : observers) {
+			observer.update(null, null);
+		}
+	}
 }

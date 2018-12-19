@@ -12,7 +12,7 @@ import java.util.Observer;
  * @Create 2018/11/14 13:13
  */
 public abstract class BaseObserver implements Observer {
-    protected Subject subject;
+	protected Subject subject;
 
 
 }

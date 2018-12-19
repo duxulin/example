@@ -7,5 +7,5 @@ package com.dxl.example.netty.rpcproxy;
  * @Create 2018/11/15 14:52
  */
 public interface RpcProxy {
-    // <T> T proxyInterface(Client client,final Class<T> serviceInterface);
+	// <T> T proxyInterface(Client client,final Class<T> serviceInterface);
 }

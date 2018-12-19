@@ -12,17 +12,17 @@ import java.io.Serializable;
  */
 @Data
 public class Book implements Serializable {
-    private String isbn;
+	private String isbn;
 
-    private String title;
+	private String title;
 
-    public Book() {
-    }
+	public Book() {
+	}
 
-    public Book(String isbn, String title) {
-        this.isbn = isbn;
-        this.title = title;
-    }
+	public Book(String isbn, String title) {
+		this.isbn = isbn;
+		this.title = title;
+	}
 
     /*public String getIsbn() {
         return isbn;

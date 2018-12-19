@@ -16,24 +16,31 @@ import org.slf4j.LoggerFactory;
  */
 public class RpcDecoder extends LengthFieldBasedFrameDecoder {
 
-    private static final Logger LOG = LoggerFactory.getLogger(RpcDecoder.class);
-    private Serializer serializer = new KryoSerializer();
+	private static final Logger LOG = LoggerFactory.getLogger(RpcDecoder.class);
+	private Serializer serializer = new KryoSerializer();
 
-    public RpcDecoder(int maxFrameLength) {
-        super(maxFrameLength, 0, 4, 0, 4);
-    }
+	public RpcDecoder(int maxFrameLength) {
+		super(maxFrameLength, 0, 4, 0, 4);
+	}
 
-    @Override
-    protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
-        ByteBuf decode = (ByteBuf) super.decode(ctx, in);
-        if (decode != null) {
-            int byteLength = decode.readableBytes();
-            byte[] byteHolder = new byte[byteLength];
-            decode.readBytes(byteHolder);
-            return serializer.deserializer(byteHolder);
 
-        }
-        LOG.debug("Decoder Result is null");
-        return null;
-    }
+	/**
+	 * @param ctx
+	 * @param in
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
+		ByteBuf decode = (ByteBuf) super.decode(ctx, in);
+		if (decode != null) {
+			int byteLength = decode.readableBytes();
+			byte[] byteHolder = new byte[byteLength];
+			decode.readBytes(byteHolder);
+			return serializer.deserializer(byteHolder);
+
+		}
+		LOG.debug("Decoder Result is null");
+		return null;
+	}
 }

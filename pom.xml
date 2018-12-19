@@ -28,6 +28,8 @@
         <!--<netty.version>4.1.31.Final</netty.version>-->
         <kryo.version>4.0.1</kryo.version>
         <curator.version>4.0.1</curator.version>
+        <guava.version>27.0-jre</guava.version>
+        <rocketmq.version>4.3.0</rocketmq.version>
     </properties>
 
 
@@ -39,6 +41,13 @@
         <module>example-cache</module>
         <module>example-netty</module>
         <module>example-rabbitmq</module>
+        <module>example-rocketmq</module>
+        <module>example-kafka</module>
+        <module>example-jpa</module>
+        <module>example-designPatten</module>
+        <module>example-think-in-java</module>
+        <module>example-thread</module>
+        <module>example-jvm</module>
     </modules>
 
     <dependencyManagement>
@@ -100,6 +109,7 @@
                 <version>${kryo.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+            <!--提供getter、setter等方法，简化Bean代码-->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
@@ -108,6 +118,7 @@
 
 
             <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
+            <!--zookeeper操作框架-->
             <dependency>
                 <groupId>org.apache.curator</groupId>
                 <artifactId>curator-recipes</artifactId>
@@ -120,6 +131,18 @@
                 <version>4.0.1</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -128,7 +151,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>${springboot.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

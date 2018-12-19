@@ -18,10 +18,10 @@ import java.util.Date;
 @Component
 public class ScheduledTasks {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ScheduledTasks.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ScheduledTasks.class);
 
-    @Scheduled(fixedRate = 5000)
-    public void reportCurrentTime() {
-        LOG.info("the time is now:{}", new SimpleDateFormat("HH:mm:ss").format(new Date()));
-    }
+	@Scheduled(fixedRate = 5000)
+	public void reportCurrentTime() {
+		LOG.info("the time is now:{}", new SimpleDateFormat("HH:mm:ss").format(new Date()));
+	}
 }

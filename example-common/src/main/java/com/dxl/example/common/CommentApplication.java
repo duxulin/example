@@ -16,7 +16,8 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 public class CommentApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(CommentApplication.class);
-    }
+	public static void main(String[] args) {
+
+		SpringApplication.run(CommentApplication.class);
+	}
 }

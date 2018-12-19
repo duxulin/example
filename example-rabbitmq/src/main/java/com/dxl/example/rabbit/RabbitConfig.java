@@ -21,68 +21,68 @@ import javax.annotation.Resource;
  */
 @Configuration
 public class RabbitConfig {
-    private static final Logger log = LoggerFactory.getLogger(RabbitConfig.class);
+	private static final Logger log = LoggerFactory.getLogger(RabbitConfig.class);
 
-    @Resource
-    private RabbitTemplate rabbitTemplate;
-
-
-    @Bean
-    public AmqpTemplate amqpTemplate() {
-        rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
-        rabbitTemplate.setEncoding("UTF-8");
-        rabbitTemplate.setMandatory(true);
-        rabbitTemplate.setMessagePropertiesConverter(new DefaultMessagePropertiesConverter());
-
-        rabbitTemplate.setReturnCallback(((message, replyCode, replyText, exchange, routingKey) -> {
-            String correlationId = message.getMessageProperties().getCorrelationId();
-            log.info("消息：{} 发送失败, 应答码：{} 原因：{} 交换机: {}  路由键: {}", message, replyCode, replyText, exchange, routingKey);
-        }));
+	@Resource
+	private RabbitTemplate rabbitTemplate;
 
 
-        rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
-            log.info("correlationData:{}", correlationData);
-            log.info("确认结果 :{}", ack);
+	@Bean
+	public AmqpTemplate amqpTemplate() {
+		rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
+		rabbitTemplate.setEncoding("UTF-8");
+		rabbitTemplate.setMandatory(true);
+		rabbitTemplate.setMessagePropertiesConverter(new DefaultMessagePropertiesConverter());
 
-            log.info("失败原因：{}", cause);
-        });
-        return rabbitTemplate;
-    }
+		rabbitTemplate.setReturnCallback(((message, replyCode, replyText, exchange, routingKey) -> {
+			String correlationId = message.getMessageProperties().getCorrelationId();
+			log.info("消息：{} 发送失败, 应答码：{} 原因：{} 交换机: {}  路由键: {}", message, replyCode, replyText, exchange, routingKey);
+		}));
 
-    @Bean("directExchange")
-    public DirectExchange directExchange() {
+
+		rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
+			log.info("correlationData:{}", correlationData);
+			log.info("确认结果 :{}", ack);
+
+			log.info("失败原因：{}", cause);
+		});
+		return rabbitTemplate;
+	}
+
+	@Bean("directExchange")
+	public DirectExchange directExchange() {
 //        return ExchangeBuilder.directExchange("direct_exchange").durable(true).build();
-        return new DirectExchange("direct_exchange");
-    }
+		return new DirectExchange("direct_exchange");
+	}
 
 
-    @Bean("directQueue")
-    public Queue directQueue() {
-        //return QueueBuilder.durable("direct_queue").build();
-        return new Queue("direct_queue");
-    }
+	@Bean("directQueue")
+	public Queue directQueue() {
+		//return QueueBuilder.durable("direct_queue").build();
+		return new Queue("direct_queue");
+	}
 
-    @Bean
-    public Binding directBinding(@Qualifier("directQueue") Queue queue, @Qualifier("directExchange") DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with("direct_routing_key");
-    }
+	@Bean
+	public Binding directBinding(@Qualifier("directQueue") Queue queue, @Qualifier("directExchange") DirectExchange exchange) {
+		return BindingBuilder.bind(queue).to(exchange).with("direct_routing_key");
+	}
 
 
-    //  fanout
+	//  fanout
 
-    @Bean("fanoutExchange")
-    FanoutExchange fanoutExchange() {
-        return new FanoutExchange("fanout_exchange");
-    }
+	@Bean("fanoutExchange")
+	FanoutExchange fanoutExchange() {
+		return new FanoutExchange("fanout_exchange");
+	}
 
-    @Bean("fanoutQueue")
-    Queue fanoutQueue() {
-        return new Queue("fanout_queue");
-    }
+	@Bean("fanoutQueue")
+	Queue fanoutQueue() {
+		return new Queue("fanout_queue");
+	}
 
-    @Bean
-    Binding fanoutBinding(@Qualifier("fanoutQueue") Queue queue, @Qualifier("fanoutExchange") FanoutExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange);
-    }
+	@Bean
+	Binding fanoutBinding(@Qualifier("fanoutQueue") Queue queue, @Qualifier("fanoutExchange") FanoutExchange exchange) {
+		return BindingBuilder.bind(queue).to(exchange);
+	}
 
 }

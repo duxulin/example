@@ -8,8 +8,8 @@ package com.dxl.example.netty.serializer;
  */
 public interface Serializer {
 
-    byte[] serializer(Object obj);
+	byte[] serializer(Object obj);
 
-    <T> T deserializer(byte[] bytes);
+	<T> T deserializer(byte[] bytes);
 
 }

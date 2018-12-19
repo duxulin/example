@@ -10,13 +10,13 @@ import java.util.Observable;
  */
 public class OctalObserver extends BaseObserver {
 
-    public OctalObserver(Subject subject) {
-        this.subject = subject;
-        subject.attah(this);
-    }
+	public OctalObserver(Subject subject) {
+		this.subject = subject;
+		subject.attah(this);
+	}
 
-    @Override
-    public void update(Observable o, Object arg) {
-        System.out.println("Octal String: " + Integer.toOctalString(subject.getStatus()));
-    }
+	@Override
+	public void update(Observable o, Object arg) {
+		System.out.println("Octal String: " + Integer.toOctalString(subject.getStatus()));
+	}
 }

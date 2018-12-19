@@ -23,26 +23,26 @@ import java.util.UUID;
 @SpringBootTest
 public class RabbitApplicationTests {
 
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
-    private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
+	private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
-    @Test
-    public void test() {
-        for (int i = 0; i < 10; i++) {
-            String msg = "aba";
-            System.out.println("send message [" + msg + "] at time:" + sdf.format(new Date()));
-            rabbitTemplate.convertAndSend("direct-exchange", "direct", msg);
+	@Test
+	public void test() {
+		for (int i = 0; i < 10; i++) {
+			String msg = "aba";
+			System.out.println("send message [" + msg + "] at time:" + sdf.format(new Date()));
+			rabbitTemplate.convertAndSend("direct-exchange", "direct", msg);
 
-        }
-    }
+		}
+	}
 
 
-    @Test
-    public void run() {
-        System.out.println("sending....");
-        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        rabbitTemplate.convertAndSend("direct_exchange", "direct_routing_key", "ok", correlationData);
-        rabbitTemplate.convertAndSend("direct_exchange", "direct_routing_key", "no", correlationData);
-    }
+	@Test
+	public void run() {
+		System.out.println("sending....");
+		CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+		rabbitTemplate.convertAndSend("direct_exchange", "direct_routing_key", "ok", correlationData);
+		rabbitTemplate.convertAndSend("direct_exchange", "direct_routing_key", "no", correlationData);
+	}
 }

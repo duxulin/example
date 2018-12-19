@@ -13,17 +13,17 @@ import java.util.concurrent.CountDownLatch;
  * @Create 2018/11/14 16:56
  */
 public class Receiver {
-    private static final Logger LOG = LoggerFactory.getLogger(Receiver.class);
+	private static final Logger LOG = LoggerFactory.getLogger(Receiver.class);
 
-    private CountDownLatch latch;
+	private CountDownLatch latch;
 
-    @Autowired
-    public Receiver(CountDownLatch latch) {
-        this.latch = latch;
-    }
+	@Autowired
+	public Receiver(CountDownLatch latch) {
+		this.latch = latch;
+	}
 
-    public void receiveMessage(String message) {
-        LOG.info("Receiver <" + message + ">");
-        latch.countDown();
-    }
+	public void receiveMessage(String message) {
+		LOG.info("Receiver <" + message + ">");
+		latch.countDown();
+	}
 }

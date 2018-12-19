@@ -15,16 +15,16 @@ import java.util.stream.Stream;
  */
 public class StreamDemo {
 
-    @Test
-    public void a() {
-        IntStream.range(1, 10).filter(a -> a % 2 == 0).peek(System.out::println).forEach(System.out::println);
-    }
+	@Test
+	public void a() {
+		IntStream.range(1, 10).filter(a -> a % 2 == 0).peek(System.out::println).forEach(System.out::println);
+	}
 
-    @Test
-    public void b() {
-        Stream.of("apple", "banana", "orange", "apple")
-                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-                .entrySet()
-                .forEach(e -> System.out.println(e));
-    }
+	@Test
+	public void b() {
+		Stream.of("apple", "banana", "orange", "apple")
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+				.entrySet()
+				.forEach(e -> System.out.println(e));
+	}
 }

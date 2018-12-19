@@ -14,13 +14,13 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class NettyApplicationTests {
 
-    private static ApplicationContext context;
+	private static ApplicationContext context;
 
-    public static void main(String[] args) {
-        context = SpringApplication.run(NettyApplicationTests.class);
-    }
+	public static void main(String[] args) {
+		context = SpringApplication.run(NettyApplicationTests.class);
+	}
 
-    public static ApplicationContext getApplicationContext() {
-        return context;
-    }
+	public static ApplicationContext getApplicationContext() {
+		return context;
+	}
 }

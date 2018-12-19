@@ -2,7 +2,7 @@ package com.dxl.example.netty.server;
 
 public interface Server {
 
-    void start();
+	void start();
 
-    void shutdown();
+	void shutdown();
 }

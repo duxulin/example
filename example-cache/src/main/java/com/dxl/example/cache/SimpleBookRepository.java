@@ -11,18 +11,18 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SimpleBookRepository implements BookRepository {
-    @Cacheable("books")
-    @Override
-    public Book getByIsbn(String isbn) {
-        slowly();
-        return new Book(isbn, "Some Book");
-    }
+	@Cacheable("books")
+	@Override
+	public Book getByIsbn(String isbn) {
+		slowly();
+		return new Book(isbn, "Some Book");
+	}
 
-    private void slowly() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+	private void slowly() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }

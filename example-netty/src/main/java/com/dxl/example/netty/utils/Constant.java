@@ -8,6 +8,6 @@ package com.dxl.example.netty.utils;
  */
 public class Constant {
 
-    public static final String ZK_DATA_PATH = "/rpc";
+	public static final String ZK_DATA_PATH = "/rpc";
 
 }

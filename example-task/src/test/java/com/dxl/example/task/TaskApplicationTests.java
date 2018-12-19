@@ -16,15 +16,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TaskApplicationTests {
-    @Autowired
-    ScheduledTasks scheduledTasks;
+	@Autowired
+	ScheduledTasks scheduledTasks;
 
-    @Test
-    public void sss() {
-        while (true) {
+	@Test
+	public void sss() {
+		while (true) {
 
-        }
-    }
+		}
+	}
 
 
 }

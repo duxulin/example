@@ -3,9 +3,9 @@ package com.dxl.example.examplemybatis;
 public interface UserInfoMapper {
 
 
-    int save(UserInfoBo user);
+	int save(UserInfoBo user);
 
-    UserInfoBo selectById(int id);
+	UserInfoBo selectById(int id);
 
 
 }

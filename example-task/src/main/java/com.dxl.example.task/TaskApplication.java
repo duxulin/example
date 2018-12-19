@@ -26,52 +26,52 @@ import java.util.concurrent.CountDownLatch;
 public class TaskApplication {
 
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TaskApplication.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TaskApplication.class);
 
-    @Bean
-    RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,
-                                            MessageListenerAdapter listenerAdapter) {
+	@Bean
+	RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,
+											MessageListenerAdapter listenerAdapter) {
 
-        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.addMessageListener(listenerAdapter, new PatternTopic("chat"));
+		RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+		container.setConnectionFactory(connectionFactory);
+		container.addMessageListener(listenerAdapter, new PatternTopic("chat"));
 
-        return container;
-    }
+		return container;
+	}
 
-    @Bean
-    MessageListenerAdapter listenerAdapter(Receiver receiver) {
-        return new MessageListenerAdapter(receiver, "receiveMessage");
-    }
+	@Bean
+	MessageListenerAdapter listenerAdapter(Receiver receiver) {
+		return new MessageListenerAdapter(receiver, "receiveMessage");
+	}
 
-    @Bean
-    Receiver receiver(CountDownLatch latch) {
-        return new Receiver(latch);
-    }
+	@Bean
+	Receiver receiver(CountDownLatch latch) {
+		return new Receiver(latch);
+	}
 
-    @Bean
-    CountDownLatch latch() {
-        return new CountDownLatch(1);
-    }
+	@Bean
+	CountDownLatch latch() {
+		return new CountDownLatch(1);
+	}
 
-    @Bean
-    StringRedisTemplate template(RedisConnectionFactory connectionFactory) {
-        return new StringRedisTemplate(connectionFactory);
-    }
+	@Bean
+	StringRedisTemplate template(RedisConnectionFactory connectionFactory) {
+		return new StringRedisTemplate(connectionFactory);
+	}
 
-    public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException {
 
-        ApplicationContext ctx = SpringApplication.run(TaskApplication.class, args);
+		ApplicationContext ctx = SpringApplication.run(TaskApplication.class, args);
 
-        StringRedisTemplate template = ctx.getBean(StringRedisTemplate.class);
-        CountDownLatch latch = ctx.getBean(CountDownLatch.class);
+		StringRedisTemplate template = ctx.getBean(StringRedisTemplate.class);
+		CountDownLatch latch = ctx.getBean(CountDownLatch.class);
 
-        LOGGER.info("Sending message...");
-        template.convertAndSend("chat", "Hello from Redis!");
+		LOGGER.info("Sending message...");
+		template.convertAndSend("chat", "Hello from Redis!");
 
-        latch.await();
+		latch.await();
 
-        System.exit(0);
-    }
+		System.exit(0);
+	}
 }
 
