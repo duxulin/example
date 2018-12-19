@@ -8,7 +8,8 @@ import java.util.List;
  * @Description
  * @Author duxl
  * @Create 2018/12/19 16:40
- * VM Args: -XX:PermSize10M -XX:MaxPermSize10M
+ * VM Args: -XX:PermSize=10M -XX:MaxPermSize=10M
+ * jdk1.8开始无效，方法区并入堆，需设置堆内存大小
  */
 public class RuntimeConstantPoolOOM {
 	public static void main(String[] args) {
