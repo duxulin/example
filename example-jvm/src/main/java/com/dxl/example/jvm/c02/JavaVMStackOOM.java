@@ -6,6 +6,7 @@ package com.dxl.example.jvm.c02;
  * @Author duxl
  * @Create 2018/12/19 16:23
  * VM Args:-Xss2M
+ * warning：执行可能会造成系统假死，请先保存所有打开文件进度
  */
 public class JavaVMStackOOM {
 	private void dontStop() {
