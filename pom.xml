@@ -48,6 +48,7 @@
         <module>example-think-in-java</module>
         <module>example-thread</module>
         <module>example-jvm</module>
+        <module>example-redis</module>
     </modules>
 
     <dependencyManagement>
