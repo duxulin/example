@@ -17,7 +17,7 @@ import java.util.UUID;
  * @Create 2018/11/16 11:10
  */
 @Controller("/mq")
-public class Sender {
+public class Sender{
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;

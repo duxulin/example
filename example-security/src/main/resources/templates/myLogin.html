@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<span style="color:red" th:text="${error}"></span>
+<form action="/authentication/login" method="post">
+    <p>
+        <label for="username">username</label>
+        <input type="text" id="username" name="username">
+    </p>
+    <p>
+        <label for="password">password</label>
+        <input type="password" id="password" name="password">
+    </p>
+    <p>
+        <label>submit</label>
+        <input type="submit" name="commit">
+    </p>
+</form>
+</body>
+</html>

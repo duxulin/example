@@ -27,10 +27,11 @@ public class LeaderLatchExample {
 
 		List<CuratorFramework> clients = Lists.newArrayList();
 		List<LeaderLatch> examples = Lists.newArrayList();
-		//TestingServer server = new TestingServer(2181);
+		TestingServer server = new TestingServer(2181);
 		try {
 			for (int i = 0; i < CLIENT_QTY; ++i) {
-				CuratorFramework client = CuratorFrameworkFactory.newClient("127.0.0.1:2181", new ExponentialBackoffRetry(1000, 3));
+				CuratorFramework client = CuratorFrameworkFactory.newClient(
+						"127.0.0.1:2181", new ExponentialBackoffRetry(1000, 3));
 				clients.add(client);
 				LeaderLatch example = new LeaderLatch(client, PATH, "Client #" + i);
 				examples.add(example);
@@ -66,7 +67,7 @@ public class LeaderLatchExample {
 			for (CuratorFramework client : clients) {
 				CloseableUtils.closeQuietly(client);
 			}
-			//CloseableUtils.closeQuietly(server);
+			CloseableUtils.closeQuietly(server);
 		}
 	}
 

@@ -26,7 +26,6 @@ public class ControllerAdvice {
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
 	public Map defaultErrorHandler(HttpServletRequest request, HttpServletResponse response, Exception e) {
-		e.printStackTrace();
 		LOGGER.error(e.getMessage());
 		Map<String, Object> map = new HashMap<>();
 		map.put("success", false);
@@ -37,7 +36,6 @@ public class ControllerAdvice {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseBody
 	public Map methodArgumentMetod(HttpServletRequest request, HttpServletResponse response, MethodArgumentNotValidException e) {
-		e.printStackTrace();
 		LOGGER.error(e.getMessage());
 		Map<String, Object> map = new HashMap<>();
 		map.put("success", false);
@@ -49,7 +47,6 @@ public class ControllerAdvice {
 	@ExceptionHandler(BindException.class)
 	@ResponseBody
 	public Map<String, Object> handleBindException(BindException e) {
-		e.printStackTrace();
 		FieldError fieldError = e.getBindingResult().getFieldError();
 
 		LOGGER.error(fieldError.getDefaultMessage());

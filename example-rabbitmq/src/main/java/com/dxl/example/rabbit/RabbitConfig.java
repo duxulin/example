@@ -36,7 +36,8 @@ public class RabbitConfig {
 
 		rabbitTemplate.setReturnCallback(((message, replyCode, replyText, exchange, routingKey) -> {
 			String correlationId = message.getMessageProperties().getCorrelationId();
-			log.info("消息：{} 发送失败, 应答码：{} 原因：{} 交换机: {}  路由键: {}", message, replyCode, replyText, exchange, routingKey);
+			log.info("消息：{} 发送失败, 应答码：{} 原因：{} 交换机: {}  路由键: {}  currelationId:{}",
+					message, replyCode, replyText, exchange, routingKey,correlationId);
 		}));
 
 
