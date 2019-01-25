@@ -51,6 +51,7 @@
         <module>example-redis</module>
         <module>example-security</module>
         <module>example-jexl</module>
+        <module>example-dubbo</module>
     </modules>
 
     <dependencyManagement>
