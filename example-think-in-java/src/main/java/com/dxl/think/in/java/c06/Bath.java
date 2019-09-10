@@ -16,6 +16,7 @@ class Soap {
 		s = new String("Constructed");
 	}
 
+	@Override
 	public String toString() {
 		return s;
 	}
@@ -41,8 +42,9 @@ public class Bath {
 
 	void print() {
 // Delayed initialization:
-		if (s4 == null)
+		if (s4 == null) {
 			s4 = new String("Joy");
+		}
 		System.out.println("s1 = " + s1);
 		System.out.println("s2 = " + s2);
 		System.out.println("s3 = " + s3);

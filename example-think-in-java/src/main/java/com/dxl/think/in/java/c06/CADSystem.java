@@ -27,6 +27,7 @@ class Circle extends Shape {
 		System.out.println("Drawing a Circle");
 	}
 
+	@Override
 	void cleanup() {
 		System.out.println("Erasing a Circle");
 		super.cleanup();
@@ -39,6 +40,7 @@ class Triangle extends Shape {
 		System.out.println("Drawing a Triangle");
 	}
 
+	@Override
 	void cleanup() {
 		System.out.println("Erasing a Triangle");
 		super.cleanup();
@@ -56,6 +58,7 @@ class Line extends Shape {
 				start + ", " + end);
 	}
 
+	@Override
 	void cleanup() {
 		System.out.println("Erasing a Line: " +
 				start + ", " + end);
@@ -70,19 +73,22 @@ public class CADSystem extends Shape {
 
 	CADSystem(int i) {
 		super(i + 1);
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < 10; j++) {
 			lines[j] = new Line(j, j * j);
+		}
 		c = new Circle(1);
 		t = new Triangle(1);
 		System.out.println("Combined constructor");
 	}
 
+	@Override
 	void cleanup() {
 		System.out.println("CADSystem.cleanup()");
 		t.cleanup();
 		c.cleanup();
-		for (int i = 0; i < lines.length; i++)
+		for (int i = 0; i < lines.length; i++) {
 			lines[i].cleanup();
+		}
 		super.cleanup();
 	}
 

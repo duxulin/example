@@ -49,8 +49,9 @@ public class MybatisStart {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (sqlSession != null)
+			if (sqlSession != null) {
 				sqlSession.close();
+			}
 		}
 
 

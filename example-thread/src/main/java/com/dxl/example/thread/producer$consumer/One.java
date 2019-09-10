@@ -74,8 +74,10 @@ public class One {
 	}
 
 	public static void main(String[] args) {
+
 		One one = new One();
 		new Thread(new Producer()).start();
+		new Thread(new Consumer()).start();
 		new Thread(new Consumer()).start();
 		new Thread(new Consumer()).start();
 		new Thread(new Consumer()).start();

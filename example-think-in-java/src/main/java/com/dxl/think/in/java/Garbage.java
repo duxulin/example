@@ -15,10 +15,12 @@ class Chair {
 
 	Chair() {
 		i = ++created;
-		if (created == 47)
+		if (created == 47) {
 			System.out.println("Created 47");
+		}
 	}
 
+	@Override
 	protected void finalize() {
 		if (!gcrun) {
 			gcrun = true;
@@ -33,9 +35,10 @@ class Chair {
 			f = true;
 		}
 		finalized++;
-		if (finalized >= created)
+		if (finalized >= created) {
 			System.out.println(
 					"All " + finalized + " finalized");
+		}
 	}
 }
 
@@ -55,14 +58,15 @@ public class Garbage {
 				"After all Chairs have been created:\n" +
 						"total created = " + Chair.created +
 						", total finalized = " + Chair.finalized);
-		if (args[0].equals("before")) {
+		if ("before".equals(args[0])) {
 			System.out.println("gc():");
 			System.gc();
 			System.out.println("runFinalization():");
 			System.runFinalization();
 		}
 		System.out.println("bye!");
-		if (args[0].equals("after"))
+		if ("after".equals(args[0])) {
 			System.runFinalizersOnExit(true);
+		}
 	}
 }

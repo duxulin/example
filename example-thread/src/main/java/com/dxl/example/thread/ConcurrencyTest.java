@@ -3,10 +3,7 @@ package com.dxl.example.thread;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.*;
 
 /**
  * @Program ConcurrencyTest
@@ -33,6 +30,7 @@ public class ConcurrencyTest {
 	public static void main(String[] args) throws Exception {
 		//定义线程池
 		ExecutorService executorService = Executors.newCachedThreadPool();
+//		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor();
 		//定义信号量,给出允许并发的线程数目
 		final Semaphore semaphore = new Semaphore(threadTotal);
 		//统计计数结果

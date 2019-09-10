@@ -44,8 +44,9 @@ public class LeaderLatchExample {
 			LeaderLatch currentLeader = null;
 			for (int i = 0; i < CLIENT_QTY; ++i) {
 				LeaderLatch example = examples.get(i);
-				if (example.hasLeadership())
+				if (example.hasLeadership()) {
 					currentLeader = example;
+				}
 			}
 			System.out.println("current leader is " + currentLeader.getId());
 			System.out.println("release the leader " + currentLeader.getId());

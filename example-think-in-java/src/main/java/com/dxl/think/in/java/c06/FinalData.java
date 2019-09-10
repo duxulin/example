@@ -41,8 +41,9 @@ public class FinalData {
 //! fd1.i1++; // Error: can't change value
 		fd1.v2.i++; // Object isn't constant!
 		fd1.v1 = new Value(); // OK -- not final
-		for (int i = 0; i < fd1.a.length; i++)
+		for (int i = 0; i < fd1.a.length; i++) {
 			fd1.a[i]++; // Object isn't constant!
+		}
 //! fd1.v2 = new Value(); // Error: Can't
 //! fd1.v3 = new Value(); // change handle
 //! fd1.a = new int[3];

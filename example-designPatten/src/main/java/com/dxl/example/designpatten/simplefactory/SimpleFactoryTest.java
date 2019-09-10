@@ -45,11 +45,13 @@ public class SimpleFactoryTest {
 		System.out.println(
 				s + ", int: " + i + ", binary: ");
 		System.out.print(" ");
-		for (int j = 31; j >= 0; j--)
-			if (((1 << j) & i) != 0)
+		for (int j = 31; j >= 0; j--) {
+			if (((1 << j) & i) != 0) {
 				System.out.print("1");
-			else
+			} else {
 				System.out.print("0");
+			}
+		}
 		System.out.println();
 	}
 
@@ -57,11 +59,13 @@ public class SimpleFactoryTest {
 		System.out.println(
 				s + ", long: " + l + ", binary: ");
 		System.out.print(" ");
-		for (int i = 63; i >= 0; i--)
-			if (((1L << i) & l) != 0)
+		for (int i = 63; i >= 0; i--) {
+			if (((1L << i) & l) != 0) {
 				System.out.print("1");
-			else
+			} else {
 				System.out.print("0");
+			}
+		}
 		System.out.println();
 	}
 
