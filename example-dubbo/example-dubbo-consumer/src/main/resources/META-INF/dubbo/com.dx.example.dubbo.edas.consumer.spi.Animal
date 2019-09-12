@@ -1,0 +1,2 @@
+dog=com.dx.example.dubbo.edas.consumer.spi.Dog
+cat=com.dx.example.dubbo.edas.consumer.spi.Cat

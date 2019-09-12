@@ -9,8 +9,9 @@ package com.dxl.example.designpatten.simplefactory;
 public class OperatorDiv extends AbstractOperator {
 	@Override
 	double getResult() {
-		if (num2 == 0)
+		if (num2 == 0) {
 			throw new IllegalArgumentException("被除数不能为零");
+		}
 		return num1 / num2;
 	}
 }

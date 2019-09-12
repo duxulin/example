@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
  * @Author duxl
  * @Create 2019/1/25 9:51
  */
+@EnableDubbo
 @SpringBootApplication
 @EnableDubbo
 public class DubboProducerApplication {

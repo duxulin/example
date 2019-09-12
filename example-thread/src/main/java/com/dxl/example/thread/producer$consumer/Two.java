@@ -16,9 +16,9 @@ public class Two {
 	private static int capacity;
 	private static final int FULL = 10;
 	private static final int EMPTY = 0;
-	Lock lock = new ReentrantLock();
-	Condition notFull = lock.newCondition();
-	Condition notEmpty = lock.newCondition();
+	private Lock lock = new ReentrantLock();
+	private Condition notFull = lock.newCondition();
+	private Condition notEmpty = lock.newCondition();
 	private Semaphore rmutex = new Semaphore(2);
 
 	class Producer implements Runnable {
@@ -27,13 +27,14 @@ public class Two {
 		public void run() {
 			for (int i = 0; i < 10; i++) {
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 				lock.lock();
 				try {
 					while (capacity >= FULL) {
+						System.out.println(Thread.currentThread().getName() + " 面包生产太多了。。。。");
 						notFull.await();
 					}
 					capacity++;
@@ -61,6 +62,7 @@ public class Two {
 				lock.lock();
 				try {
 					while (capacity <= EMPTY) {
+						System.out.println(Thread.currentThread().getName() + " 发现面包没了。。。。");
 						notEmpty.await();
 					}
 					capacity--;

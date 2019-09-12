@@ -11,8 +11,9 @@ public class RealDate implements Date {
 
 	public RealDate(String data) {
 		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 5; i++) {
 			sb.append(data);
+		}
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
