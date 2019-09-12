@@ -16,19 +16,7 @@
         <module>example-dubbo-producer</module>
     </modules>
 
-    <repositories>
-        <repository>
-            <id>edas-oss-central</id>
-            <name>taobao mirror central</name>
-            <url>http://edas-public.oss-cn-hangzhou.aliyuncs.com/repository</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.dxl.example</groupId>
@@ -48,10 +36,10 @@
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>0.2.0</version>
         </dependency>
+
         <dependency>
-            <groupId>com.alibaba.edas</groupId>
-            <artifactId>edas-dubbo-extension</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.alibaba.edas/edas-sdk -->
         <dependency>
