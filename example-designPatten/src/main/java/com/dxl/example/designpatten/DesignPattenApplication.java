@@ -1,7 +1,9 @@
 package com.dxl.example.designpatten;
 
+import com.dxl.example.designpatten.spring.observer.OrderCreateEvent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * @Program DesignPattenApplication
@@ -13,6 +15,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DesignPattenApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DesignPattenApplication.class);
+        ConfigurableApplicationContext run = SpringApplication.run(DesignPattenApplication.class);
+
+
+        OrderCreateEvent a_order_is_create = new OrderCreateEvent("a order is create");
+//		run.publishEvent(a_order_is_create);
+//		System.out.println("publish thread name:"+Thread.currentThread().getName());
+
+
 	}
 }

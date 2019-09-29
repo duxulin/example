@@ -13,6 +13,7 @@ public class EchoClientHandler extends SimpleChannelInboundHandler {
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
 		ByteBuf in = (ByteBuf) msg;
+        boolean b = in.hasArray();
 		System.out.println("Client Received:"+in.toString(CharsetUtil.UTF_8));	}
 
 	@Override

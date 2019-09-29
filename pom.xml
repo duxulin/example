@@ -52,6 +52,7 @@
         <module>example-security</module>
         <module>example-jexl</module>
         <module>example-dubbo</module>
+        <module>algorithm</module>
     </modules>
 
     <dependencyManagement>

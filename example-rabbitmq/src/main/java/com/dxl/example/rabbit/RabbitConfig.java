@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.amqp.rabbit.support.DefaultMessagePropertiesConverter;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -52,8 +53,8 @@ public class RabbitConfig {
 
 	@Bean("directExchange")
 	public DirectExchange directExchange() {
-//        return ExchangeBuilder.directExchange("direct_exchange").durable(true).build();
-		return new DirectExchange("direct_exchange");
+        return (DirectExchange) ExchangeBuilder.directExchange("direct_exchange").durable(true).build();
+//		return new DirectExchange("direct_exchange");
 	}
 
 
@@ -85,5 +86,10 @@ public class RabbitConfig {
 	Binding fanoutBinding(@Qualifier("fanoutQueue") Queue queue, @Qualifier("fanoutExchange") FanoutExchange exchange) {
 		return BindingBuilder.bind(queue).to(exchange);
 	}
+//
+//	@Bean
+//	MessageListenerAdapter listenerAdapter(){
+//		return new MessageListenerAdapter()
+//	}
 
 }
