@@ -28,7 +28,7 @@
         <!--<netty.version>4.1.31.Final</netty.version>-->
         <kryo.version>4.0.1</kryo.version>
         <curator.version>4.0.1</curator.version>
-        <guava.version>27.0-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
         <rocketmq.version>4.3.0</rocketmq.version>
     </properties>
 
