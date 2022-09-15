@@ -19,7 +19,7 @@ public class Two {
 	private Lock lock = new ReentrantLock();
 	private Condition notFull = lock.newCondition();
 	private Condition notEmpty = lock.newCondition();
-	private Semaphore rmutex = new Semaphore(2);
+	private Semaphore mutex = new Semaphore(2);
 
 	class Producer implements Runnable {
 
@@ -45,6 +45,7 @@ public class Two {
 				} finally {
 					lock.unlock();
 				}
+				System.out.println("produce cycle");
 			}
 		}
 	}
@@ -73,6 +74,8 @@ public class Two {
 				} finally {
 					lock.unlock();
 				}
+				System.out.println("consumer cycle");
+
 			}
 		}
 	}
@@ -82,7 +85,7 @@ public class Two {
 		new Thread(two.new Producer()).start();
 		new Thread(two.new Consumer()).start();
 		new Thread(two.new Consumer()).start();
-		new Thread(two.new Consumer()).start();
+//		new Thread(two.new Consumer()).start();
 
 		new Thread(two.new Producer()).start();
 		new Thread(two.new Producer()).start();

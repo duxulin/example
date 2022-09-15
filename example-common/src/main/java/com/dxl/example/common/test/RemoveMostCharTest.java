@@ -1,9 +1,7 @@
 package com.dxl.example.common.test;
 
-import com.sun.tools.javac.util.Assert;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
