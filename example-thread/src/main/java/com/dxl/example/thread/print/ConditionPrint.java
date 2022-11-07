@@ -24,7 +24,7 @@ public class ConditionPrint {
 
                 lock.lock();
                 try {
-                    System.out.println("a");
+                    System.out.print("a");
                     b.signal();
                     if(i !=9) { // 最后一次循环的时候不等待,直接退出,促使程序终止
                         a.await();
@@ -43,7 +43,7 @@ public class ConditionPrint {
             for(int i = 0;i<10;i++){
                 lock.lock();
                 try {
-                    System.out.println("b");
+                    System.out.print("b");
                     c.signal();
                     if(i !=9) {
                         b.await();
