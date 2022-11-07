@@ -1,8 +1,9 @@
 package com.dxl.example.netty.authoritative.guide.p8;
 
+import com.google.common.collect.Lists;
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.sun.tools.javac.util.List;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 public class TestSubscribeReqProto {
@@ -20,7 +21,7 @@ public class TestSubscribeReqProto {
         builder.setSubReqID(1)
                 .setUserName("duxulin")
                 .setProductName("Netty Book");
-        builder.addAllAddress(List.of("Hangzhou XiHu", "ShaoXing ShangYu"));
+        builder.addAllAddress(Lists.newArrayList("Hangzhou XiHu", "ShaoXing ShangYu"));
         return builder.build();
     }
 

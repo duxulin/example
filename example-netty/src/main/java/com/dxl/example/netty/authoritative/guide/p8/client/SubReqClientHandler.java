@@ -1,11 +1,9 @@
 package com.dxl.example.netty.authoritative.guide.p8.client;
 
 import com.dxl.example.netty.authoritative.guide.p8.SubscribeReqProto;
-import com.sun.tools.javac.util.List;
-import io.netty.channel.ChannelHandler;
+import com.google.common.collect.Lists;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.util.concurrent.EventExecutorGroup;
 
 public class SubReqClientHandler extends ChannelInboundHandlerAdapter {
 
@@ -22,7 +20,7 @@ public class SubReqClientHandler extends ChannelInboundHandlerAdapter {
         builder.setSubReqID(i)
                 .setUserName("duxulin")
                 .setProductName("Netty Book");
-        builder.addAllAddress(List.of("Hangzhou XiHu", "ShaoXing ShangYu"));
+        builder.addAllAddress(Lists.newArrayList("Hangzhou XiHu", "ShaoXing ShangYu"));
         return builder.build();
     }
 

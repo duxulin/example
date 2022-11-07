@@ -15,8 +15,9 @@ public class NetClient {
 
 	@Test
 	public void client() throws IOException {
-		Socket socket = new Socket( new Proxy(Proxy.Type.HTTP,new InetSocketAddress(8080)));
+		Socket socket = new Socket("127.0.0.1",8080);
 		SocketChannel channel = socket.getChannel();
+		System.out.println(String.valueOf(channel.isConnected()));
 
 		PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
